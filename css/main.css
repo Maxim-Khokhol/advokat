@@ -1,0 +1,965 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=PT+Sans+Narrow:wght@400;700&display=swap');
+
+html { font-size: clamp(16px, 0.5vw + 14px, 18px);
+}
+
+h1 { font-size: clamp(28px, 4.5vw, 56px) !important ;
+    line-height: 1.1;
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+h1 span{
+    font-size: clamp(28px, 4.5vw, 56px);
+    line-height: 1.1;
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+.fancy-list li{
+    margin-left: 10px;
+}
+/* отключаем стандартные буллеты */
+.fancy-list { list-style: none; margin: 0; padding: 0; }
+
+/* настраиваемые параметры */
+.fancy-list li{
+    --bullet-size: 30px;   /* размер иконки */
+    --bullet-shift: 0.38em;/* насколько опустить/поднять (поиграй значением) */
+    position: relative;
+    padding-left: calc(var(--bullet-size) + 10px);
+    line-height: 1.6;
+}
+
+/* сам «буллет» */
+.fancy-list li::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    /* центр по строке + тонкая коррекция вниз */
+    top: calc(0.5em + var(--bullet-shift));
+    transform: translateY(-50%);
+    width: var(--bullet-size);
+    height: var(--bullet-size);
+
+    /* используем маску, чтобы можно было задавать цвет */
+    background-color: black; /* цвет иконки (можно currentColor) */
+    -webkit-mask: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'>\
+<g fill='currentColor'>\
+<path d='M176 128a48 48 0 1 1-48-48a48 48 0 0 1 48 48' opacity='.5'/>\
+<path d='M140 128a12 12 0 1 1-12-12a12 12 0 0 1 12 12'/>\
+</g></svg>") no-repeat center;
+    mask: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'>\
+<g fill='currentColor'>\
+<path d='M176 128a48 48 0 1 1-48-48a48 48 0 0 1 48 48' opacity='.5'/>\
+<path d='M140 128a12 12 0 1 1-12-12a12 12 0 0 1 12 12'/>\
+</g></svg>") no-repeat center / contain;
+}
+
+h2 { font-size: clamp(22px, 2.6vw, 36px); line-height: 1.2; }
+p, li  { font-size: 1rem;
+    line-height: 1.55;
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 350;
+    font-style: normal;
+} /* 1rem = базовый html size */
+/* FIX: контейнер на всю ширину и без внутреннего скролла */
+body{
+    /* если тебе нужен flex на body — растягиваем детей по ширине */
+    align-items: stretch;              /* вместо center */
+}
+.highlight-text{
+    font-size: clamp(24px, 3.5vw, 40px) !important ;
+    line-height: 1.1;
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    margin-top: 40px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* убиваем 100vw/100vh и внутренний скролл, оставляем нормальное поведение */
+.container{
+    width: 100% !important;
+    max-width: 1600px !important;
+    height: auto !important;
+    overflow-y: auto;
+    margin: 0;                         /* без auto-центровки, если не нужна */
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* корень без горизонтального скролла */
+html, body {
+    position: relative;
+    margin: 0;
+    overflow-x: clip;  !important;        /* можно hidden, но clip современнее */
+}
+
+/* нормальный контейнер */
+.container{
+    max-width: 1920px;
+    overflow-y: auto;
+    width: 100%;               /* ВАЖНО: вместо 100vw */
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;    /* без !important */
+    background: #fff;
+}
+
+/* защитные правила от «распирающих» медиа */
+img, video, svg, canvas {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+.map, .map iframe{
+    width: 100%;
+    height: 500px;
+}
+
+
+
+
+
+
+
+/* From Uiverse.io by himanshu9682 */
+.type--A {
+    --line_color: #555555;
+    --back_color: #ffecf6;
+}
+.type--B {
+    --line_color: #1b1919;
+    --back_color: #e9ecff;
+}
+.type--C {
+    --line_color: #00135c;
+    --back_color: #DFC7F0;
+}
+.button {
+    position: relative;
+    z-index: 0;
+    width: 240px;
+    height: 56px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: white !important;
+    color: var(--line_color);
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+}
+.button__text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color: black;
+}
+.button::before,
+.button::after,
+.button__text::before,
+.button__text::after {
+    content: "";
+    position: absolute;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--line_color);
+    transition: all 0.5s ease;
+}
+.button::before {
+    top: 0;
+    left: 54px;
+    width: calc(100% - 56px * 2 - 16px);
+}
+.button::after {
+    top: 0;
+    right: 54px;
+    width: 8px;
+}
+.button__text::before {
+    bottom: 0;
+    right: 54px;
+    width: calc(100% - 56px * 2 - 16px);
+}
+.button__text::after {
+    bottom: 0;
+    left: 54px;
+    width: 8px;
+}
+.button__line {
+    position: absolute;
+    top: 0;
+    width: 56px;
+    height: 100%;
+    overflow: hidden;
+}
+.button__line::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 150%;
+    height: 100%;
+    box-sizing: border-box;
+    border-radius: 300px;
+    border: solid 3px var(--line_color);
+}
+.button__line:nth-child(1),
+.button__line:nth-child(1)::before {
+    left: 0;
+}
+.button__line:nth-child(2),
+.button__line:nth-child(2)::before {
+    right: 0;
+}
+.button:hover {
+    letter-spacing: 6px;
+}
+.button:hover::before,
+.button:hover .button__text::before {
+    width: 8px;
+}
+.button:hover::after,
+.button:hover .button__text::after {
+    width: calc(100% - 56px * 2 - 16px);
+}
+.button__drow1,
+.button__drow2 {
+    position: absolute;
+    z-index: -1;
+    border-radius: 16px;
+    transform-origin: 16px 16px;
+}
+.button__drow1 {
+    top: -16px;
+    left: 40px;
+    width: 32px;
+    height: 0;
+    transform: rotate(30deg);
+}
+.button__drow2 {
+    top: 44px;
+    left: 77px;
+    width: 32px;
+    height: 0;
+    transform: rotate(-127deg);
+}
+.button__drow1::before,
+.button__drow1::after,
+.button__drow2::before,
+.button__drow2::after {
+    content: "";
+    position: absolute;
+}
+.button__drow1::before {
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 32px;
+    border-radius: 16px;
+    transform-origin: 16px 16px;
+    transform: rotate(-60deg);
+}
+.button__drow1::after {
+    top: -10px;
+    left: 45px;
+    width: 0;
+    height: 32px;
+    border-radius: 16px;
+    transform-origin: 16px 16px;
+    transform: rotate(69deg);
+}
+.button__drow2::before {
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 32px;
+    border-radius: 16px;
+    transform-origin: 16px 16px;
+    transform: rotate(-146deg);
+}
+.button__drow2::after {
+    bottom: 26px;
+    left: -40px;
+    width: 0;
+    height: 32px;
+    border-radius: 16px;
+    transform-origin: 16px 16px;
+    transform: rotate(-262deg);
+}
+.button__drow1,
+.button__drow1::before,
+.button__drow1::after,
+.button__drow2,
+.button__drow2::before,
+.button__drow2::after {
+    background: var(--back_color);
+}
+.button:hover .button__drow1 {
+    animation: drow1 ease-in 0.06s;
+    animation-fill-mode: forwards;
+}
+.button:hover .button__drow1::before {
+    animation: drow2 linear 0.08s 0.06s;
+    animation-fill-mode: forwards;
+}
+.button:hover .button__drow1::after {
+    animation: drow3 linear 0.03s 0.14s;
+    animation-fill-mode: forwards;
+}
+.button:hover .button__drow2 {
+    animation: drow4 linear 0.06s 0.2s;
+    animation-fill-mode: forwards;
+}
+.button:hover .button__drow2::before {
+    animation: drow3 linear 0.03s 0.26s;
+    animation-fill-mode: forwards;
+}
+.button:hover .button__drow2::after {
+    animation: drow5 linear 0.06s 0.32s;
+    animation-fill-mode: forwards;
+}
+@keyframes drow1 {
+    0% {
+        height: 0;
+    }
+    100% {
+        height: 100px;
+    }
+}
+@keyframes drow2 {
+    0% {
+        width: 0;
+        opacity: 0;
+    }
+    10% {
+        opacity: 0;
+    }
+    11% {
+        opacity: 1;
+    }
+    100% {
+        width: 120px;
+    }
+}
+@keyframes drow3 {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 80px;
+    }
+}
+@keyframes drow4 {
+    0% {
+        height: 0;
+    }
+    100% {
+        height: 120px;
+    }
+}
+@keyframes drow5 {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 124px;
+    }
+}
+
+.button:not(:last-child) {
+    margin-bottom: 64px;
+}
+
+
+
+
+
+
+:root {
+    --color-white: #fff;
+    --time-animation: 0.6s;
+}
+@keyframes pulse {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(25px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+html {
+    scrollbar-width: none;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    overflow: hidden scroll;
+    -ms-overflow-style: none;
+}
+body::-webkit-scrollbar {
+    display: none;
+}
+.layout {
+    width: 100%;
+    height: calc(100vh * 3);
+    position: relative;
+}
+.layout .section-stick {
+    margin: auto;
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 1000;
+}
+.layout .section-stick .stick,
+.layout .section-stick .active {
+    width: 13px;
+    height: 62px;
+    border: none;
+    border-radius: 9px;
+}
+.layout .section-stick .stick {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.4);
+    transition: all var(--time-animation) ease-in-out;
+}
+.layout .section-stick .active {
+    position: absolute;
+    background-color: var(--color-white);
+    box-shadow: 0px 0px 12px 1px var(--color-white);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+}
+.layout section {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--color-white);
+    font-size: 80px;
+    font-weight: 600;
+    transform: translateY(100vh);
+    transition: all var(--time-animation) ease-in-out;
+    z-index: 0;
+}
+.layout section .home {
+    display: flex;
+    flex-direction: column;
+    row-gap: 45px;
+    align-items: center;
+}
+.layout section .home svg {
+    animation: pulse 1.4s linear infinite normal;
+}
+.layout .s1 {
+    background-color: #4d2536;
+    transform: translateY(0);
+    z-index: 4;
+}
+.layout .s2 {
+    background-color: #02486b;
+    z-index: 3;
+}
+.layout .s3 {
+    background-color: #171716;
+    z-index: 2;
+}
+.layout .s4 {
+    background-color: #154621;
+    z-index: 1;
+}
+/*** RESPONSIVE ***/
+/* MOBILE */
+@media screen and (max-width: 576px) {
+    body::-webkit-scrollbar {
+        width: 0px;
+        background: transparent;
+        -webkit-appearance: none;
+    }
+    .layout .section-stick {
+        right: 20px;
+        bottom: 20px;
+        transform: scale(0.7);
+    }
+    .layout section {
+        font-size: 40px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+:root {
+    --color-text: white;
+    --color-bg: white;
+    --color-bg-accent: #ecdcc0;
+    --size: clamp(10rem, 1rem + 40vmin, 30rem);
+    --gap: calc(var(--size) / 14);
+    --duration: 60s;
+    --scroll-start: 0;
+    --scroll-end: calc(-100% - var(--gap));
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-text: papayawhip;
+        --color-bg: purple;
+        --color-bg-accent: black;
+    }
+}
+
+.marquee {
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    gap: var(--gap);
+    mask-image: linear-gradient(
+            var(--mask-direction, to right),
+            hsl(0 0% 0% / 0),
+            hsl(0 0% 0% / 1) 20%,
+            hsl(0 0% 0% / 1) 80%,
+            hsl(0 0% 0% / 0)
+    );
+}
+
+.marquee__group {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: var(--gap);
+    min-width: 100%;
+    animation: scroll-x var(--duration) linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .marquee__group {
+        animation-play-state: paused;
+    }
+}
+
+.marquee--vertical {
+    --mask-direction: to bottom;
+}
+
+.marquee--vertical,
+.marquee--vertical .marquee__group {
+    flex-direction: column;
+}
+
+.marquee--vertical .marquee__group {
+    animation-name: scroll-y;
+}
+
+.marquee--reverse .marquee__group {
+    animation-direction: reverse;
+    animation-delay: -3s;
+}
+
+@keyframes scroll-x {
+    from {
+        transform: translateX(var(--scroll-start));
+    }
+    to {
+        transform: translateX(var(--scroll-end));
+    }
+}
+
+@keyframes scroll-y {
+    from {
+        transform: translateY(var(--scroll-start));
+    }
+    to {
+        transform: translateY(var(--scroll-end));
+    }
+}
+
+/* Element styles */
+.marquee svg {
+    display: grid;
+    place-items: center;
+    width: var(--size);
+    fill: var(--color-text);
+    background: var(--color-bg-accent);
+    aspect-ratio: 16/9;
+    padding: calc(var(--size) / 10);
+    border-radius: 0.5rem;
+}
+
+.marquee--vertical svg {
+    aspect-ratio: 1;
+    width: calc(var(--size) / 1.5);
+    padding: calc(var(--size) / 6);
+}
+
+/* Parent wrapper */
+.wrapper-3 {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    margin: auto;
+    max-width: 100vw;
+}
+
+.wrapper--vertical {
+    flex-direction: row;
+    height: 100vh;
+}
+
+/* Toggle direction button */
+.toggle {
+    --size: 3rem;
+    position: relative;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    width: var(--size);
+    height: var(--size);
+    font: inherit;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    border-radius: 50%;
+    color: inherit;
+    background-color: var(--color-bg-accent);
+    z-index: 1;
+}
+
+.toggle:focus-visible {
+    box-shadow: 0 0 0 2px var(--color-text);
+}
+
+.toggle span {
+    position: absolute;
+    display: inline-block;
+    top: 50%;
+    left: calc(100% + 0.4em);
+    width: fit-content;
+    white-space: nowrap;
+    transform: translateY(-50%);
+    animation: fade 400ms 4s ease-out forwards;
+    user-select: none;
+}
+
+.toggle svg {
+    --size: 1.5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--size);
+    height: var(--size);
+    fill: currentcolor;
+    transform: translate(-50%, -50%);
+    transition: transform 300ms cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.toggle--vertical svg {
+    transform: translate(-50%, -50%) rotate(-90deg);
+}
+
+@keyframes fade {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+:root{
+    --color-text: #f7eddc;          /* цвет текста карточек */
+    --color-bg: white;
+    --color-bg-accent: #000;        /* фон карточек */
+    --size: clamp(14rem, 6rem + 18vmin, 24rem); /* ширина карточки */
+    --gap: calc(var(--size) / 12);
+    --duration: 60s;
+
+    /* ширина зоны затухания по краям карусели */
+    --fade: 8%; /* было ~20% → делаем заметно меньше */
+}
+
+/* …остальной общий CSS оставь как есть… */
+
+/* МЕНЬШЕЕ затуманивание по бокам */
+.marquee{
+    display:flex;
+    overflow:hidden;
+    user-select:none;
+    gap:var(--gap);
+    mask-image: linear-gradient(
+            var(--mask-direction, to right),
+            hsl(0 0% 0% / 0) 0%,
+            hsl(0 0% 0% / 1) var(--fade),
+            hsl(0 0% 0% / 1) calc(100% - var(--fade)),
+            hsl(0 0% 0% / 0) 100%
+    );
+}
+
+/* Стили ЭЛЕМЕНТОВ в ленте — теперь не svg, а .card */
+.marquee .card{
+    width: var(--size);
+    aspect-ratio: 16 / 15;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:center;
+    padding: calc(var(--size) / 10);
+    border-radius: 0.75rem;
+    background: var(--color-bg-accent);
+    color: white;
+    text-align:center;
+}
+.marquee .card img{
+    width: auto;
+    height: 40%;
+    margin-bottom: 10px;
+}
+/* Текст внутри карточки */
+.marquee .card p{
+    margin:0;
+    font-size: clamp(0.9rem, 0.6rem + 1vmin, 1.1rem);
+    line-height: 1.45;
+}
+
+/* вертикальный вариант, если используешь переключатель */
+.marquee--vertical,
+.marquee--vertical .marquee__group{ flex-direction:column; }
+.marquee--vertical .marquee__group{ animation-name: scroll-y; }
+
+
+
+
+
+
+
+:root {
+    --dark: #34495E;
+    --light: #ffffff;
+    --success: #0ABF30;
+    --error: #E24D4C;
+    --warning: #E9BD0C;
+    --info: #3498DB;
+}
+
+.notifications {
+    position: fixed;
+    top: 30px;
+
+    z-index: 999999999999999999999999;
+    right: 20px;
+
+}
+.notifications :where(.toast, .column) {
+    display: flex;
+    align-items: center;
+}
+.notifications .toast {
+    width: 400px;
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    border-radius: 4px;
+    padding: 16px 17px;
+    margin-bottom: 10px;
+    background-color: white;
+    z-index: 999999;
+    justify-content: space-between;
+    animation: show_toast 0.3s ease forwards;
+}
+@keyframes show_toast {
+    0% {
+        transform: translateX(100%);
+    }
+    40% {
+        transform: translateX(-5%);
+    }
+    80% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-10px);
+    }
+}
+.notifications .toast.hide {
+    animation: hide_toast 0.3s ease forwards;
+}
+@keyframes hide_toast {
+    0% {
+        transform: translateX(-10px);
+    }
+    40% {
+        transform: translateX(0%);
+    }
+    80% {
+        transform: translateX(-5%);
+    }
+    100% {
+        transform: translateX(calc(100% + 20px));
+    }
+}
+.toast::before {
+    position: absolute;
+
+    content: "";
+    height: 3px;
+    width: 100%;
+    bottom: 0px;
+    left: 0px;
+    animation: progress 5s linear forwards;
+}
+@keyframes progress {
+    100% {
+        width: 0%;
+    }
+}
+.toast.success::before, .btn#success {
+    background: var(--success);
+    background-color: lightgreen;
+}
+.toast.error::before, .btn#error {
+    background: var(--error);
+}
+.toast.warning::before, .btn#warning {
+    background: var(--warning);
+}
+.toast.info::before, .btn#info {
+    background: var(--info);
+}
+.toast .column i {
+    font-size: 1.75rem;
+}
+.toast.success .column i {
+    color: var(--success);
+}
+.toast.error .column i {
+    color: var(--error);
+}
+.toast.warning .column i {
+    color: var(--warning);
+}
+.toast.info .column i {
+    color: var(--info);
+}
+.toast .column span {
+    font-size: 1.07rem;
+    margin-left: 12px;
+}
+.toast i:last-child {
+    color: #aeb0d7;
+    cursor: pointer;
+}
+.toast i:last-child:hover {
+    color: var(--dark);
+}
+.buttons .btn {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin: 0 5px;
+    color: var(--light);
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border-radius: 4px;
+}
+@media screen and (max-width: 530px) {
+    .notifications {
+        width: 95%;
+    }
+    .notifications .toast {
+        width: 100%;
+        font-size: 1rem;
+        margin-left: 20px;
+    }
+    .buttons .btn {
+        margin: 0 1px;
+        font-size: 1.1rem;
+        padding: 8px 15px;
+    }
+}
+
+
+
+
+
+
+
+
+
+#myBtn {
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 30px; /* Place the button 30px from the right */
+    z-index: 9999999999; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: #8E54E9; /* Set a background color */
+    color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 15px; /* Some padding */
+    border-radius: 50%; /* Rounded corners */
+    font-size: 18px; /* Increase font size */
+    width: 65px;
+    height: 65px;
+}
+#myBtn svg{
+    margin-left: 50%;
+    margin-top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 80%;
+    height: auto;
+}
+
+#myBtn:hover {
+    background-color: #8E54E9; /* Add a dark-grey background on hover */
+}
+
+:root { --header-h: 0px; }
+
+/* навешиваем на целевые секции (скрипт добавит класс автоматически) */
+.js-scroll-target {
+    /* отступ сверху ровно под высоту хедера + чуть воздуха */
+    scroll-margin-top: calc(var(--header-h, 0px) + 8px);
+}
+
+/* РЕКОМЕНДАЦИЯ: отключи глобальный CSS smooth, чтобы не было "двойной" плавности */
+html, body, .container {
+    scroll-behavior: auto !important;
+}
+.button-cu-sub{
+    margin-left: 50%;
+    transform: translateX(-50%) translateY(-20px);
+    border: 2px solid #8E54E9 !important;
+}

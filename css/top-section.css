@@ -1,0 +1,283 @@
+/*@import url('https://fonts.googleapis.com/css2?family=Capriola&family=Oswald:wght@200..700&family=PT+Sans+Narrow:wght@400;700&display=swap');*/
+.top-section{
+    width: 100%;
+    margin-bottom: 20px;
+}
+.top-section-bg{
+    width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.img-11{
+   width: 80%;
+    position: relative;
+    top: 0;
+    margin-top: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+
+}
+.top-section-second{
+    width: 100%;
+    min-height: 500px;
+    background-color: black;
+    position: relative;
+    z-index: 9999999;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding:0 20px ;
+
+}
+.svg-1{
+    margin-right: 50px;
+    width: 250px;
+    position: relative;
+}
+.top-section-second__text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 50%;
+}
+.top-section p{
+    color: white;
+}
+.top-section-bg h1{
+    position: absolute;
+    width: 90%;
+    top:150px;
+    left:50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+.top-section-bg h1 span{
+    color: #8558FF;
+}
+
+.svg-1 img{
+    width: 100%;
+    height: 100%;
+}
+.years-exp{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 90px;
+    color: transparent;                 /* стандарт */
+    -webkit-text-fill-color: transparent; /* WebKit */
+
+    /* контур */
+    -webkit-text-stroke: 2px #8558FF;   /* основной */
+    text-stroke: 2px #8558FF;           /* прогрессивно */
+
+    /* опционально: сглаживание стыков контура */
+    paint-order: stroke fill;
+
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+.rotating {
+    display: inline-block;
+    animation: spin 30s linear infinite;
+    will-change: transform;           /* чуть лучше производительность */
+    transform-origin: center center;  /* вращать вокруг центра */
+}
+
+@keyframes spin {
+    from { transform: rotate(0turn); }
+    to   { transform: rotate(1turn); }
+}
+
+/* сделать ещё медленнее/быстрее */
+.rotating.slow    { animation-duration: 60s; } /* медленнее */
+.rotating.faster  { animation-duration: 10s; }
+
+/* пауза при ховере (по желанию) */
+.rotating:hover { animation-play-state: paused; }
+
+/* уважать системную настройку «уменьшить анимацию» */
+@media (prefers-reduced-motion: reduce) {
+    .rotating { animation: none; }
+}
+.advokat{
+    position: absolute;
+    left: 23%;
+    top: 25%;
+    z-index: 1000000000;
+    width: 200px;
+    height: 60px;
+    border-radius: 30px;
+    background-color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.advokat p{
+    color: black;
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px;
+}
+@media (max-width: 1500px) {
+
+    header{
+        margin-bottom: 100px;
+    }
+}
+@media (max-width: 360px) {
+
+    header{
+        margin-bottom: 130px;
+    }
+}
+
+
+
+
+.button-cu {
+    margin-top: 20px;
+    background-color: #f3f7fe;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    width: 150px;
+    height: 60px;
+    transition: 0.3s;
+}
+.button-cu p{
+    color: #8558FF;
+}
+.button-cu:hover > p{
+    color: white;
+}
+.button-cu:hover {
+    background-color: #8558FF;
+    box-shadow: 0 0 0 5px #3b83f65f;
+    color: #fff;
+}
+.top-section-second > p{
+    max-width: 80%;
+}
+
+@media (min-width: 768px) {
+    .button-52 {
+        padding: 13px 50px 13px;
+    }
+}
+@media (max-width: 800px) and (min-width: 600px){
+    .img-11{
+        width: 100%;
+    }
+}
+@media (max-width: 600px) {
+    .img-11{
+        width: 140%; !important;
+    }
+}
+
+/* База — пусть на десктопе будет 80% как и было */
+.top-section-bg .img-11{
+    width: 80%;
+    max-width: none;          /* перебиваем глобальный max-width:100% */
+    display: block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* 800–600px — заполняет всю ширину */
+@media (max-width: 800px) and (min-width: 600px){
+    .top-section-bg .img-11{
+        width: 100%;
+        max-width: none;
+    }
+}
+
+/* ≤600px — делаем крупнее, чтобы «дышала» */
+@media (max-width: 600px){
+    .top-section-bg .img-11{
+        width: 150% !important; /* без лишней ; перед !important */
+        max-width: none;         /* иначе упрёмся в глобальный max-width */
+    }
+}
+@media (max-width: 640px){
+    .top-section-second{
+        height: 635px;
+        flex-direction: column;
+    }
+    .svg-1{
+        transform: translateY(-40px);
+        margin-right: 0px;
+    }
+    .top-section-second__text{
+        width: 90%;
+    }
+}
+@media (max-width: 390px) {
+    .svg-1{
+        transform: translateY(-20px);
+        margin-right: 0px;
+    }
+
+}
+/* Базова анімація появи зліва/справа */
+.reveal-left,
+.reveal-right{
+    opacity: 0;
+    transition: opacity 2s ease, transform 2s cubic-bezier(.22,.61,.36,1);
+    will-change: transform, opacity;
+}
+
+/* Зсув у стартовому стані */
+.reveal-left  { --dx: -80px; transform: translateX(var(--dx)); }
+.reveal-right { --dx:  80px; transform: translateX(var(--dx)); }
+
+/* Якщо елемент одночасно центрований translateX(-50%) (твій h1), додай клас .centered */
+.reveal-left.centered,
+.reveal-right.centered{
+    transform: translateX(-50%) translateX(var(--dx));
+}
+
+/* Коли елемент увійшов у в’юпорт */
+.is-inview{
+    opacity: 1;
+    transform: none;
+}
+
+/* Варіант для центрованих */
+.is-inview.centered{
+    transform: translateX(-50%) translateX(0);
+}
+
+/* Поважаємо системне “зменшити анімацію” */
+@media (prefers-reduced-motion: reduce){
+    .reveal-left,
+    .reveal-right{
+        opacity: 1;
+        transform: none !important;
+        transition: none;
+    }
+}
+@media (max-width: 480px) {
+    .top-section{
+        margin-top: 20px;
+    }
+    .main-text{
+        margin-top: -30px;
+    }
+}
+@media (max-width: 345px) {
+    .top-section{
+        margin-top: 40px;
+    }
+}

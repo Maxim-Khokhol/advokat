@@ -1,0 +1,88 @@
+/* ======== БУРГЕР ======== */
+.burger-menu {
+    position: absolute;
+    right: 20px;
+    justify-self: end;
+    width: 140px;
+    height: 30px;
+    color: black;
+    text-transform: uppercase;
+    display: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+}
+.burger-click-region {
+    position: absolute;
+    left: 100px; width: 40px; height: 30px; cursor: pointer;
+}
+.burger-menu-piece {
+    display: block; position: absolute; width: 40px;
+    border-radius: 5px; border-top: 4px solid black;
+    transform-origin: 50% 50%; transition: transform 400ms ease-out;
+}
+.burger-menu-piece:nth-child(1){ top:0; }
+.burger-menu-piece:nth-child(2){ top:12px; opacity:1; transition: transform 400ms ease-out, opacity 0ms linear 200ms; }
+.burger-menu-piece:nth-child(3){ top:24px; }
+
+/* открытие анимации линий */
+.active .burger-menu-piece:nth-child(1){ animation: burger-open-top 400ms ease-out forwards; }
+.active .burger-menu-piece:nth-child(2){ opacity:0; transition: transform 400ms ease-out, opacity 0ms linear 200ms; }
+.active .burger-menu-piece:nth-child(3){ animation: burger-open-bot 400ms ease-out forwards; }
+
+/* закрытие анимации линий */
+.closing .burger-menu-piece:nth-child(1){ animation: burger-close-top 400ms ease-out forwards; }
+.closing .burger-menu-piece:nth-child(3){ animation: burger-close-bot 400ms ease-out forwards; }
+
+@keyframes burger-open-top { 50%{transform:translate3d(0,12px,0);} 100%{transform:translate3d(0,12px,0) rotate(45deg);} }
+@keyframes burger-open-bot { 50%{transform:translate3d(0,-12px,0);} 100%{transform:translate3d(0,-12px,0) rotate(-45deg);} }
+@keyframes burger-close-top { 0%{transform:translate3d(0,12px,0) rotate(45deg);} 50%{transform:translate3d(0,12px,0);} 100%{transform:translate3d(0,0,0);} }
+@keyframes burger-close-bot { 0%{transform:translate3d(0,-12px,0) rotate(-45deg);} 50%{transform:translate3d(0,-12px,0);} 100%{transform:translate3d(0,0,0);} }
+
+/* ======== МОБИЛЬНАЯ ШТОРКА СВЕРХУ ======== */
+.mobile-backdrop{
+    position: fixed; inset: 0; background: rgba(0,0,0,.35);
+    opacity: 0; pointer-events: none; transition: opacity .25s ease;
+    z-index: 9998;
+}
+.mobile-backdrop.show{ opacity:1; pointer-events:auto; }
+
+.mobile-drawer{
+    position: fixed; left:0; right:0; top:0;
+    transform: translateY(-100%);
+    transition: transform .32s cubic-bezier(.22,1,.36,1);
+    background: rgba(255,255,255,.98);
+    -webkit-backdrop-filter: saturate(160%) blur(8px);
+    backdrop-filter: saturate(160%) blur(8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,.18), 0 0 0 1px rgba(0,0,0,.06) inset;
+    z-index: 9999;
+}
+.mobile-drawer.open{ transform: translateY(0); }
+.mobile-drawer__inner{ padding: 16px 20px 20px; }
+
+/* вертикальная навигация в шторке */
+.navigation--mobile{
+    display:flex; flex-direction:column; gap:12px;
+    margin: 8px 0 6px;
+}
+.navigation--mobile .nav__item{
+    cursor:pointer; padding:12px 4px; border-radius:10px;
+    transition: background-color .2s ease;
+}
+.navigation--mobile .nav__item:hover{ background: rgba(0,0,0,.06); }
+
+/* блок телефона внизу */
+.mobile-drawer .header__phone{ margin-top: 10px; }
+
+/* показываем бургер и прячем хедер-меню <900px */
+@media (max-width: 900px){
+    .navigation, .header__phone{ display:none; }
+    .burger-menu{ display:block; }
+}
+/* на десктопе мобильная шторка не нужна */
+@media (min-width: 901px){
+    .mobile-backdrop, .mobile-drawer{ display:none !important; }
+}

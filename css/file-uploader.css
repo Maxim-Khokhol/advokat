@@ -1,0 +1,287 @@
+
+.file-uploader{
+    width: 100%;
+    max-width: 500px;     /* чтобы на десктопе шире 500px не раздувалась */
+    background: #fff;
+    border-radius: 8px;
+    margin-inline: auto;  /* по центру */
+    box-sizing: border-box;
+}
+
+.file-uploader .uploader-header {
+    display: flex;
+    padding-left:20px;
+    align-items: center;
+    border-radius: 5px 5px 0 0;
+    justify-content: space-between;
+}
+.uploader-header{
+    padding: 0;
+    margin: 0;
+}
+.uploader-header .uploader-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.uploader-header .file-completed-status {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+}
+.file-uploader .file-list {
+    list-style: none;
+    width: 100%;
+
+    padding-bottom: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+    scrollbar-color: #999 transparent;
+    scrollbar-width: thin;
+}
+.file-uploader .file-list:has(li) {
+    padding: 20px;
+}
+.file-list .file-item {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 22px;
+}
+.file-list .file-item:last-child {
+    margin-bottom: 0px;
+}
+.file-list .file-item .file-extension {
+    height: 50px;
+    width: 50px;
+    color: white;
+    display: flex;
+    text-transform: uppercase;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    background: #8E54E9;
+}
+.file-uploader{
+    margin-right: 30px;
+}
+.file-list .file-item .file-content-wrapper {
+    flex: 1;
+}
+.file-list .file-item .file-content {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.file-list .file-item .file-name {
+    font-size: 1rem;
+    font-weight: 600;
+}
+.file-list .file-item .file-info {
+    display: flex;
+    gap: 5px;
+}
+.file-list .file-item .file-info small {
+    color: #5c5c5c;
+    margin-top: 5px;
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+.file-list .file-item .file-info .file-status {
+    color: red;
+}
+
+.file-list .file-item .cancel-button {
+    align-self: center;
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    font-size: 1.4rem;
+}
+.file-list .file-item .cancel-button:hover {
+    color: #8E54E9;
+}
+.file-browse-button{
+    height: 120px;
+    width: auto;
+}
+.file-list .file-item .file-progress-bar {
+    width: 100%;
+    height: 3px;
+    margin-top: 10px;
+    border-radius: 30px;
+    background: #d9d9d9;
+}
+.file-list .file-item .file-progress-bar .file-progress {
+    width: 0%;
+    height: inherit;
+    border-radius: inherit;
+    background: #5145BA;
+}
+.file-uploader .file-upload-box {
+    margin: 0px 20px 20px;
+    border-radius: 5px;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #5145BA;
+    transition: all 0.2s ease;
+}
+
+.file-uploader .file-upload-box.active {
+    border: 2px solid #8E54E9;
+
+
+}
+.file-uploader .file-upload-box .box-title {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #626161;
+}
+.file-uploader .file-upload-box.active .box-title {
+    pointer-events: none;
+}
+.file-upload-box .box-title .file-browse-button {
+    color: #5145BA;
+    cursor: pointer;
+}
+.file-upload-box .box-title .file-browse-button:hover {
+    text-decoration: underline;
+}
+.file-browse-button:hover{
+    scale: 1.05;
+}
+.file-browse-button{
+    transition: .5s ease;
+}
+.bg-2{
+    position: absolute;
+    top:0;
+    left: 0;
+}
+.bg-3{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.file-uploader, form{
+    position: relative;
+}
+
+
+/* 2) Карта — резиновая */
+.map, .map iframe {
+    width: 100% !important;
+    height: auto;
+    aspect-ratio: 4 / 3;           /* даст адекватную высоту на мобилках */
+    display: block;
+}
+
+/* 3) В узком режиме убираем «лишние» отступы у аплоадера */
+@media (max-width: 520px){
+    .file-uploader { margin-right: 0 !important; }
+}
+@media (max-width: 350px){
+    .contact-form{
+        background-color: white;
+        border: none;
+        box-shadow: none;
+        transform: translateX(-10px);
+    }
+}
+@media (max-width: 1024px){
+    .file-uploader{
+        display: none;
+    }
+    .contact-form{
+        width: 95vw;
+    }
+
+
+}
+
+/* Доп. страховки от переполнения в формах */
+.contact-us,
+.contact-form,
+.form-row,
+.contact-form label { min-width: 0; }
+.contact-form input[type="text"],
+.contact-form textarea { max-width: 100%; }
+
+/* Если используете блок с телефоном и префиксом страны */
+.selected-option input { flex: 1 1 auto; min-width: 0; }
+/* From Uiverse.io by vinodjangid07 */
+.Documents-btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: fit-content;
+    height: 45px;
+    border: none;
+    padding: 0px 15px;
+    border-radius: 5px;
+    background-color: rgb(49, 49, 83);
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.folderContainer {
+    width: 40px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+}
+.fileBack {
+    z-index: 1;
+    width: 80%;
+    height: auto;
+}
+.filePage {
+    width: 50%;
+    height: auto;
+    position: absolute;
+    z-index: 2;
+    transition: all 0.3s ease-out;
+}
+.fileFront {
+    width: 85%;
+    height: auto;
+    position: absolute;
+    z-index: 3;
+    opacity: 0.95;
+    transform-origin: bottom;
+    transition: all 0.3s ease-out;
+}
+.text {
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+.Documents-btn:hover .filePage {
+    transform: translateY(-5px);
+}
+.Documents-btn:hover {
+    background-color: rgb(58, 58, 94);
+}
+.Documents-btn:active {
+    transform: scale(0.95);
+}
+.Documents-btn:hover .fileFront {
+    transform: rotateX(30deg);
+}
+
+@media (min-width: 1023px) {
+    .Documents-btn, .Documents-btn-list{
+        display: none;
+    }
+    .Documents-btn-label{
+        opacity: 0;
+        line-height: 0;
+    }
+}

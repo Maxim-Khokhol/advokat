@@ -1,0 +1,96 @@
+/* Показываем только на узких экранах */
+@media (max-width: 900px){
+    /* затемнение фона */
+    .mm-backdrop{
+        position: fixed; inset: 0;
+        background: rgba(0,0,0,.35);
+        opacity: 0; pointer-events: none;
+        transition: opacity .25s ease;
+        z-index: 9998;
+    }
+    .mm-backdrop.show{ opacity: 1; pointer-events: auto; }
+
+    /* шторка */
+    .mm-drawer{
+        position: fixed; left: 0; right: 0; top: 0;
+        transform: translateY(-100%);
+        transition: transform .32s cubic-bezier(.22,1,.36,1);
+        background: rgba(255,255,255,.98);
+        -webkit-backdrop-filter: saturate(160%) blur(8px);
+        backdrop-filter: saturate(160%) blur(8px);
+        box-shadow: 0 20px 40px rgba(0,0,0,.18), 0 0 0 1px rgba(0,0,0,.06) inset;
+        z-index: 9999;
+    }
+    .mm-drawer.open{ transform: translateY(0); }
+
+    .mm-drawer__inner{ padding: 16px 20px 24px; }
+
+    .mm-close{
+        position: absolute; top: 10px; right: 14px;
+        border: 0; background: transparent; font-size: 28px; line-height: 1;
+        cursor: pointer;
+    }
+
+    .mm-nav{ display: flex; flex-direction: column; gap: 12px; margin-top: 28px; }
+    .mm-nav .nav__item{
+        cursor: pointer; padding: 12px 4px; border-radius: 10px;
+        transition: background-color .2s ease;
+    }
+    .mm-nav .nav__item:hover{ background: rgba(0,0,0,.06); }
+}
+
+/* На широких экранах прячем */
+@media (min-width: 901px){
+    .mm-backdrop, .mm-drawer{ display: none !important; }
+}
+
+/* Блокируем скролл страницы при открытом меню */
+html.mm-open{ overflow: hidden; }
+:root{
+    --z-backdrop: 10000;
+    --z-drawer:   10001;
+    --z-modal-ov: 10010;
+    --z-modal:    10011;
+}
+
+/* бекдроп и шторка всегда поверх всего */
+.mm-backdrop{ position:fixed; inset:0; z-index:var(--z-backdrop) !important; }
+.mm-drawer{   position:fixed; left:0; right:0; top:0; z-index:var(--z-drawer) !important; }
+
+/* если используешь модалку отзывов — убедимся, что она тоже поверх */
+.modal__overlay{ position:fixed !important; inset:0; z-index:var(--z-modal-ov) !important; }
+.modal__dialog{  position:fixed !important; z-index:var(--z-modal) !important; }
+
+/* (опция) чтобы кнопка “Top” не лезла над затемнением */
+html.mm-open #myBtn{ pointer-events:none; z-index:1 !important; }
+:root{
+    --z-backdrop: 10000;
+    --z-drawer:   10001;
+    --z-modal-ov: 10010;
+    --z-modal:    10011;
+}
+
+/* бекдроп и шторка — всегда над всем */
+.mm-backdrop{ position:fixed; inset:0; z-index:var(--z-backdrop) !important; }
+.mm-drawer{   position:fixed; left:0; right:0; top:0; z-index:var(--z-drawer) !important; }
+
+/* модалка отзывов — поверх даже бургера */
+.modal__overlay{ position:fixed !important; inset:0; z-index:var(--z-modal-ov) !important; }
+.modal__dialog{  position:fixed !important; z-index:var(--z-modal) !important; }
+
+/* когда открыт бургер или модалка — прячем "Top" ниже бекдропа */
+html.mm-open #myBtn,
+html.modal-open #myBtn{ pointer-events:none; z-index:1 !important; }
+
+.mm-nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 60px;
+}
+.mm-drawer__inner .button-cu-sub{
+    width: 265px !important;
+}
+.mm-drawer{
+    z-index: 99999999999999999 !important;
+}

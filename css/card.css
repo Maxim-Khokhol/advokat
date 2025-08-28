@@ -1,0 +1,54 @@
+/* Контейнер секции (на всю ширину центра) */
+.container-2{
+    width: min(1200px, 92%);
+    margin-inline: auto;
+}
+
+/* Лента карточек: FLEX + перенос + центрирование всех рядов */
+.cards-grid{
+    display: flex !important;     /* на всякий случай перебьём старый grid */
+    flex-wrap: wrap;
+    justify-content: center;      /* центрирует последний ряд */
+    align-items: stretch;
+    gap: 24px;
+}
+
+/* Карточка */
+.card-2{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid rgba(17,24,39,.12);
+    border-radius: 22px;
+    box-shadow: 0 10px 20px rgba(0,0,0,.06);
+    overflow: hidden;
+
+    /* базовая ширина: делает 3 в ряд на широких экранах */
+    flex: 0 1 calc((100% - 48px) / 3);      /* 48px = 2*gap */
+    max-width: calc((100% - 48px) / 3);
+}
+
+/* Ровная шапка у карточек */
+.card-2_img{ aspect-ratio: 16 / 9; overflow: hidden; }
+.card-2_img img{ width:100%; height:100%; object-fit:cover; display:block; }
+.card-2_body{ padding: 24px 20px 28px; }
+
+/* Планшет: 2 в ряд */
+@media (max-width: 1200px){
+    .card-2{
+        flex-basis: calc((100% - 24px) / 2);
+        max-width: calc((100% - 24px) / 2);
+    }
+}
+
+/* Мобилка: 1 в ряд, но остаётся центрирование контейнера */
+@media (max-width: 640px){
+    .card-2{
+        flex-basis: 100%;
+        max-width: 680px;         /* чтобы на очень широком контейнере карта не растягивалась */
+        margin-inline: auto;      /* центр на одинарной строке */
+    }
+}
+
+

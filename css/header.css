@@ -1,0 +1,175 @@
+#header{
+    width: 100%;
+    max-width: 1600px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    background-color: white;
+    z-index: 9999999999999999;
+
+}
+.main-text{
+    max-width: 1600px;
+}
+.navigation{
+    min-width: 300px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+}
+.header__phone-theme-language-switchers{
+    display: flex;
+    position: absolute;
+    right: 130px;
+    justify-content: left;
+    align-items: center;
+    margin-right: 100px;
+}
+.head__left{
+    width: 400px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+.header__phone{
+    width: 10%;
+    position: relative;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+}
+.call-buton-mini{
+    display: none;
+}
+.phone {
+    background-color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 36px;
+    position: absolute;
+    cursor: pointer;
+}
+
+.cta {
+    height: 50px;
+    width: 225px;
+    color: white;
+    z-index: 1;
+    transition: 1.2s;
+    background: linear-gradient(to right bottom, #4776E6, #8E54E9);
+}
+
+.number {
+    height: 50px;
+    width: 220px;
+    background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(https://images.unsplash.com/photo-1529044728228-9917df974897?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80);
+    background-size: cover;
+    color: white;
+    box-shadow: 3px 3px 30px #aaa;
+}
+
+.header__phone:hover > .cta {
+    transform: translateX(-80%);
+    transition: 1.2s;
+}
+
+.header__logo{
+    height: 60%;
+    transform: translateX(7px);
+    width: auto;
+}
+/* Базовый пункт меню */
+.nav__item{
+    position: relative;
+    display: inline-block;   /* чтобы псевдо-элементы ориентировались по ширине текста */
+        /* место для клика и линий */
+    line-height: 1;
+    cursor: pointer;
+    color: #2b1c15;
+}
+
+/* Две линии: сверху и снизу (чёрные) */
+.nav__item::before,
+.nav__item::after{
+    content: "";
+    position: absolute;
+    left: 0; right: 0;
+    height: 2px;
+    background: #000;        /* чёрный цвет полос */
+    transform: scaleX(0);    /* спрятаны по умолчанию */
+    transform-origin: center;
+    transition: transform .22s ease;
+}
+.nav__item::before{ top: -8px; }
+.nav__item::after { bottom: -8px; }
+
+/* Показываем линии только при наведении */
+.nav__item:hover::before,
+.nav__item:hover::after{
+    transform: scaleX(1);
+}
+
+/* (необязательно) на очень маленьких экранах чуть ближе к тексту */
+@media (max-width: 480px){
+    .nav__item::before{ top: -6px; }
+    .nav__item::after { bottom: -6px; }
+}
+
+@-webkit-keyframes cc-calto-action-ripple {
+    0% {
+        -webkit-box-shadow:
+                0 4px 10px rgba(145,140,203,.2),
+                0 0 0 0   rgba(145,140,203,.2),
+                0 0 0 5px rgba(145,140,203,.2),
+                0 0 0 10px rgba(145,140,203,.2);
+        box-shadow:
+                0 4px 10px rgba(145,140,203,.2),
+                0 0 0 0   rgba(145,140,203,.2),
+                0 0 0 5px rgba(145,140,203,.2),
+                0 0 0 10px rgba(145,140,203,.2);
+    }
+    100% {
+        -webkit-box-shadow:
+                0 4px 10px rgba(145,140,203,.2),
+                0 0 0 5px rgba(145,140,203,.2),
+                0 0 0 10px rgba(145,140,203,.2),
+                0 0 0 20px rgba(145,140,203,0);
+        box-shadow:
+                0 4px 10px rgba(145,140,203,.2),
+                0 0 0 5px rgba(145,140,203,.2),
+                0 0 0 10px rgba(145,140,203,.2),
+                0 0 0 20px rgba(145,140,203,0);
+    }
+}
+@keyframes cc-calto-action-ripple {
+    0% {
+        -webkit-box-shadow:
+                0 4px 10px rgba(145,140,203,.2),
+                0 0 0 0   rgba(145,140,203,.2),
+                0 0 0 5px rgba(145,140,203,.2),
+                0 0 0 10px rgba(145,140,203,.2);
+        box-shadow:
+                0 4px 10px rgba(145,140,203,.2),
+                0 0 0 0   rgba(145,140,203,.2),
+                0 0 0 5px rgba(145,140,203,.2),
+                0 0 0 10px rgba(145,140,203,.2);
+    }
+    100% {
+        -webkit-box-shadow:
+                0 4px 10px rgba(145,140,203,.2),
+                0 0 0 5px rgba(145,140,203,.2),
+                0 0 0 10px rgba(145,140,203,.2),
+                0 0 0 20px rgba(145,140,203,0);
+        box-shadow:
+                0 4px 10px rgba(145,140,203,.2),
+                0 0 0 5px rgba(145,140,203,.2),
+                0 0 0 10px rgba(145,140,203,.2),
+                0 0 0 20px rgba(145,140,203,0);
+    }
+}
+
